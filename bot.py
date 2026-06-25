@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 import sqlite3 
 from datetime import datetime
@@ -6,8 +7,11 @@ from datetime import datetime
 from telegram import Update
 from telegram.ext import ApplicationBuilder,CommandHandler,ContextTypes
 
-# This looks for the .env file and loads the variables
-load_dotenv()
+
+# This forces Python to look in the exact folder where bot.py lives
+current_dir = Path(__file__).resolve().parent
+env_path = current_dir / '.env'
+load_dotenv(dotenv_path=env_path)
 
 # This grabs your new token safely
 TOKEN = os.getenv('TELEGRAM_TOKEN')
