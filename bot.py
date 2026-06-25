@@ -14,13 +14,13 @@ env_path = current_dir / '.env'
 load_dotenv(dotenv_path=env_path)
 
 # This grabs your new token safely
-TOKEN = os.getenv('TELEGRAM_TOKEN')
+TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 
 # TEMPORARY CHECK: Run your bot and check your terminal for this message!
-if not TOKEN:
-    print("❌ ERROR: Your token is empty! The script cannot find .env or TELEGRAM_TOKEN")
+if not TELEGRAM_BOT_TOKEN:
+    print("❌ ERROR: Your token is empty! The script cannot find .env or TELEGRAM_BOT_TOKEN")
 else:
-    print(f"✅ Token found successfully: {TOKEN[:5]}...{TOKEN[-5:]}")
+    print(f"✅ Token found successfully: {TELEGRAM_BOT_TOKEN[:5]}...{TELEGRAM_BOT_TOKEN[-5:]}")
 
 def init_db():
     """Creates the database and table if they don't exist already."""
@@ -74,7 +74,7 @@ async def log_mood(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text("❌ Usage: /log <number> (Example: /log 7)")
 
 if __name__=='__main__':
-    application = ApplicationBuilder().token(TOKEN).build()
+    application = ApplicationBuilder().token(TELEGRAM_BOT_TOKEN).build()
     application.add_handler(CommandHandler('start', start))
     application.add_handler(CommandHandler('log', log_mood))
     
