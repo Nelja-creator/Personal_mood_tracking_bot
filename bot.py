@@ -12,6 +12,12 @@ load_dotenv()
 # This grabs your new token safely
 TOKEN = os.getenv('TELEGRAM_TOKEN')
 
+# TEMPORARY CHECK: Run your bot and check your terminal for this message!
+if not TOKEN:
+    print("❌ ERROR: Your token is empty! The script cannot find .env or TELEGRAM_TOKEN")
+else:
+    print(f"✅ Token found successfully: {TOKEN[:5]}...{TOKEN[-5:]}")
+
 def init_db():
     """Creates the database and table if they don't exist already."""
     conn = sqlite3.connect('mood_tracker.db')
