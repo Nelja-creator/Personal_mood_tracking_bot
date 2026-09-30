@@ -15,7 +15,7 @@ current_dir = Path(__file__).resolve().parent
 env_path = current_dir / '.env'
 load_dotenv(dotenv_path=env_path)
 
-# This grabs your new token safelys
+# This grabs your new token safely
 TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN')
 
 # TEMPORARY CHECK: Run your bot and check your terminal for this message!
@@ -66,7 +66,10 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Greeting command."""
     await update.message.reply_text(
         "Welcome! I am your Personal Mood Tracker. "
-        "Use /log <number> to save your current mood (1-10)."
+        "Commands:\n"
+        "• /mood - Open button keyboard to log mood\n"
+        "• /log <1-10> - Quick log via text\n"
+        "• /stats - View your mood history chart"
     )
 
 async def mood_keyboard(update: Update, context: ContextTypes.DEFAULT_TYPE):
